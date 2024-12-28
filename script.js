@@ -13,6 +13,12 @@ let food = {};  // Food position
 let score = 0;  // Initial score
 let gameInterval;  // Game interval for updating the game state
 
+// Screen size considerations for mobile (Android phone)
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+const mobileGridSize = screenWidth < 768 ? Math.floor(screenWidth / snakeSize) : gridSize;  // Adjust grid size for smaller screens
+const mobileHeight = screenHeight < 768 ? Math.floor(screenHeight / snakeSize) : gridSize;  // Adjust grid size based on screen height
+
 // Event listeners for control buttons
 function changeDirection(newDirection) {
   if (newDirection === 'up' && direction !== 'down') direction = 'up';
@@ -23,7 +29,7 @@ function changeDirection(newDirection) {
 
 // Initialize the game
 function initGame() {
-  snake = [{ x: 10, y: 10 }];
+  snake = [{ x: Math.floor(mobileGridSize / 2), y: Math.floor(mobileHeight / 2) }];
   direction = 'right';
   score = 0;
   scoreElement.textContent = score;
@@ -57,8 +63,8 @@ function updateGame() {
 
   // Check for collisions with walls or self
   if (
-    head.x < 0 || head.x >= gridSize || 
-    head.y < 0 || head.y >= gridSize ||
+    head.x < 0 || head.x >= mobileGridSize || 
+    head.y < 0 || head.y >= mobileHeight ||
     snake.some((segment, index) => index !== 0 && segment.x === head.x && segment.y === head.y)
   ) {
     endGame();
@@ -92,8 +98,8 @@ function drawFood() {
 
 // Spawn food at a random position
 function spawnFood() {
-  food.x = Math.floor(Math.random() * gridSize);
-  food.y = Math.floor(Math.random() * gridSize);
+  food.x = Math.floor(Math.random() * mobileGridSize);
+  food.y = Math.floor(Math.random() * mobileHeight);
 
   // Ensure food does not spawn on the snake
   if (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
