@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+
+    <div class="score-board">
+        <div class="score">
+          <p id="user-score">0</p>
+          <p>Your Score</p>
+        </div>
+    </div>
+
+    <div class="play">
+        <div class="button-grid">
+            <button onclick="changeDirection('up')" type="button" class="buttons" id="btn1"> ↑ </button>
+            <button onclick="changeDirection('left')" type="button" class="buttons" id="btn4"> ← </button>
+            <button onclick="changeDirection('right')" type="button" class="buttons" id="btn3"> → </button>
+            <button onclick="changeDirection('down')" type="button" class="buttons" id="btn2"> ↓ </button>
+        </div>
+    </div>
+
+</div>
+<button id="play-again-btn" onclick="restartGame()" class="buttons" style="display: none;">Play Again</button>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
